@@ -86,7 +86,7 @@ export default function MainContent() {
   };
 
   // fetch data
-  const {data, isError, isLoading} = useFetcher({endpoint: "api/hero-section?populate=profile_picture"});
+  const {data, isError, isLoading} = useFetcher({endpoint: "/api/hero-section?populate=profile_picture"});
   const [profilePicture, setProfilePicture] = useState("");
 
   useEffect(() => {
