@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .text-secondary-dark {
+    @apply bg-gradient-to-b from-[#AFADAD] to-[#545454] inline-block text-transparent bg-clip-text font-medium;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #303030;
+  }
+
+  .border-dashed-y {
+    @apply before:block before:w-full before:lg:w-[calc(100%+200px)] before:h-1 before:border-t before:lg:-translate-x-24 before:translate-y-5 after:block after:w-full after:xl:w-[calc(100%+400px)] after:h-1 after:border-t after:xl:-translate-x-[193px] after:border-dashed before:border-dashed before:border-accent/20 after:border-accent/20;
+  }
+
+  .border-dashed-x {
+    @apply before:block before:h-full before:w-full before:xl:h-[calc(100%+150px)] before:xl:w-[calc(100%+200px)] before:2xl:w-[calc(100%+100px)] before:absolute before:lg:border-x before:border-dashed before:border-accent/20 before:-top-9 before:xl:translate-x-5}
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#9E00FF] to-[#FA4949] text-accent capitalize tracking-wide px-8 border-0 rounded-md;
+  }
+}

@@ -1,7 +1,9 @@
-import React from 'react'
+import Link from "next/link";
 
-export default function BacPrimary() {
+export default function BacPrimary({content, className, href = '#'}) {
   return (
-    <div>BacPrimary</div>
+    <Link href={href} className={`btn btn-primary ${className}`}>
+      {content}
+    </Link>
   )
 }
