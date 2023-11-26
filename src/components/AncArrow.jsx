@@ -1,10 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Tag from "./partials/project/Tag";
-import Arrow from "@/icons/arrow";
-import Image from "next/image";
+import Arrow from "@/icons/Arrow";
 
 export default function AncArrow({ title, desc, tags, href, titleClassName }) {
   return (
