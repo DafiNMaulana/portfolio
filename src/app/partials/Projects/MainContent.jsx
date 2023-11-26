@@ -55,8 +55,8 @@ export default function MainContent({filteredOnPage = ""}) {
 
       <div
         className={`w-full ${
-          gridMode == true ? "grid" : "flex"
-        } grid-cols-1 sm:grid-cols-2 flex-col xl:grid-cols-3 xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
+          gridMode == true ? "flex flex-col sm:grid sm:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-y-10"
+        }  xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
       >
         <IsDataFetched data={data} isError={isError} isLoading={isLoading} />
         {data.length > 0 && <MappedProject data={data} isInGridMode={gridMode} filter={filter} limited={5} />}

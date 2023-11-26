@@ -25,7 +25,7 @@ export default function ProjectCard({thumbnail, title, desc, href, openSource}) 
           src={process.env.STRAPI_BASE_URL + thumbnail}
           loader={() => `${process.env.STRAPI_BASE_URL}${thumbnail}?w=500`}
           alt={title}
-          className="h-52 object-cover border border-accent rounded-lg"
+          className="h-52 object-cover mx-auto border border-accent rounded-lg"
           width={500}
           height={208}
         />
