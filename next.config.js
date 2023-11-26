@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['cms-dafi18.kodingkeun.my.id', proccess.env.STRAPI_BASE_URL, 'kodingkeun.my.id', 'kodingkeun.com'],
+    domains: ['cms-dafi18.kodingkeun.my.id', 'kodingkeun.my.id', 'kodingkeun.com'],
   },
   env: {
     STRAPI_BASE_URL: process.env.STRAPI_BASE_URL,
