@@ -1,11 +1,10 @@
 "use client";
-import {useRef, useEffect} from "react";
+import {useRef, useEffect, useState} from "react";
 
 // nextjs
 import Image from "next/image";
 
-// assets
-import you from "@/assets/img/header/you.jpg";
+import user from "../../../assets/img/header/user.png";
 
 // components
 import BacPrimary from "@/components/BacPrimary";
@@ -17,6 +16,9 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// api
+import useFetcher from "@/lib/useFetcher";
 
 export default function MainContent() {
   const top = useRef(null);
@@ -42,34 +44,39 @@ export default function MainContent() {
     let tl2 = gsap.timeline();
 
     // beeg title
-    tl.to(top.current, {left: "0"}, 0.2)
-      .to(bot.current, {right: "0"}, 0.2);
+    tl.to(top.current, {left: "0"}, 0.2).to(bot.current, {right: "0"}, 0.2);
 
     // main content
-    tl2.to([title, subtitle, button], {
-        y: "0",
-        duration: 0.9,
-        visibility: "visible",
-        ease: "Power.out",
-        opacity: 1,
-      },
-      0.2
-    ).to(img, {
-        duration: 0.9,
-        ease: "Power.out",
-        opacity: 1,
-        y: "0",
-        visibility: "visible",
-      },
-      0.2
-    ).to(img, {scale: 1}, 0.2);
+    tl2
+      .to(
+        [title, subtitle, button],
+        {
+          y: "0",
+          duration: 0.9,
+          visibility: "visible",
+          ease: "Power.out",
+          opacity: 1,
+        },
+        0.2
+      )
+      .to(
+        img,
+        {
+          duration: 0.9,
+          ease: "Power.out",
+          opacity: 1,
+          y: "0",
+          visibility: "visible",
+        },
+        0.2
+      )
+      .to(img, {scale: 1}, 0.2);
 
     return () => {
       tl.revert();
       tl2.revert();
     };
   }, [top, bot]);
-  // end animation
 
   const scrollTo = () => {
     window.scrollTo({
@@ -78,6 +85,15 @@ export default function MainContent() {
     });
   };
 
+  // fetch data
+  const {data, isError, isLoading} = useFetcher({endpoint: "api/hero-section?populate=profile_picture"});
+  const [profilePicture, setProfilePicture] = useState("");
+
+  useEffect(() => {
+    if (data.attributes) {
+      setProfilePicture(process.env.STRAPI_BASE_URL + data?.attributes?.profile_picture?.data?.attributes?.url);
+    }
+  }, [data]);
   return (
     <>
       {/* beeg title */}
@@ -89,15 +105,35 @@ export default function MainContent() {
       {/* beeg title end */}
 
       <div ref={mainWraper} className="flex flex-col items-center justify-center text-center gap-y-5 h-full">
-        {/* the MOST CRINGEY HUMAN */}
+        {/* profile picture */}
         <div className="overflow-hidden">
-          <Image src={you} alt="You" width={110} height={110} className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 " />
+          <Image
+            src={profilePicture == "" ? user : profilePicture}
+            loader={() => `${profilePicture}?w=500`}
+            alt="You"
+            width={110}
+            height={110}
+            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 "
+            placeholder="blur"
+            blurDataURL={`${user}?w=500`}
+          />
         </div>
-        {/* the MOST CRINGEY HUMAN end */}
+        {/* profile picture end */}
 
         {/* Title */}
         <div className="overflow-hidden">
-          <Title content="Halo, saya Dafi 👋" className={"title z-20 translate-y-[100%] invisible opacity-0"} />
+          <Title
+            content={
+              isLoading ? (
+                <span className="loading loading-dots loading-md bg-accent"></span>
+              ) : isError ? (
+                "Something went wrong :("
+              ) : (
+                `${data.attributes !== undefined && data.attributes.title}👋`
+              )
+            }
+            className={"title z-20 translate-y-[100%] invisible opacity-0"}
+          />
         </div>
         {/* Title end */}
 
@@ -105,7 +141,15 @@ export default function MainContent() {
         <div className="overflow-hidden">
           <SubTitle
             parentClassName="px-5 md:px-28 max-w-3xl relative z-20 subtitle translate-y-[100%] invisible opacity-0"
-            content="Saya adalah seorang freelancer frontend developer yang selalu siap membantu anda kapan pun dan dimanapun"
+            content={
+              isLoading ? (
+                <span className="loading loading-dots loading-md bg-accent"></span>
+              ) : isError ? (
+                "Something went wrong :("
+              ) : (
+                data.attributes !== undefined && data.attributes.subtitle
+              )
+            }
           />
         </div>
         {/* Subtitle end */}
