@@ -1,12 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import kedaiKopi from "@/assets/img/project/kedai-kopi.png";
 import Link from "next/link";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
-import Dots from "@/icons/Dots";
 import BacAccent from "./BacAccent";
-import BacOutlineAccent from "./BacOutlineAccent";
 
 export default function ProjectCard({thumbnail, title, desc, href, openSource}) {
   const truncateText = (sentence, maxWords) => {
