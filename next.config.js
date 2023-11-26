@@ -6,7 +6,11 @@ const nextConfig = {
   env: {
     STRAPI_BASE_URL: process.env.STRAPI_BASE_URL,
     STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN,
-  }
+  },
+  experimental: {
+    workerThreads: false,
+    cpus: 4
+  },
 }
 
 module.exports = nextConfig
