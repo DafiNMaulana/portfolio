@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function useFetcher({endpoint}) {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
 
   const apiConfig = {
