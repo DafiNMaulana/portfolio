@@ -3,6 +3,7 @@ import {useRef, useEffect, useState} from "react";
 
 // nextjs
 import Image from "next/image";
+import Link from "next/link";
 
 import user from "../../../assets/img/header/user.png";
 
@@ -77,14 +78,7 @@ export default function MainContent() {
       tl2.revert();
     };
   }, [top, bot]);
-
-  const scrollTo = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
-  };
-
+  
   // fetch data
   const {data, isError, isLoading} = useFetcher({endpoint: "/api/hero-section?populate=profile_picture"});
   const [profilePicture, setProfilePicture] = useState("");
@@ -168,12 +162,12 @@ export default function MainContent() {
         </span>
       </div>
       {/* BEEG TITLE PART 2 END */}
-      <button
-        onClick={() => scrollTo()}
+      <Link
+        href="#about"
         className="w-5 h-8 border-accent border rounded-full absolute bottom-0 md:bottom-20 md:left-0 2xl:-left-10 flex justify-center pt-2 z-30"
       >
         <span className="w-1 h-2 rounded-full bg-accent block animate-bounce"></span>
-      </button>
+      </Link>
     </>
   );
 }
