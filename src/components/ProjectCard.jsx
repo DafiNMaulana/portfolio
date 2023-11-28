@@ -19,7 +19,7 @@ export default function ProjectCard({thumbnail, title, desc, href, openSource}) 
     }
   };
   return (
-    <div className="card card-compact border border-accent p-5 rounded-lg gap-y-5 flex flex-col relative group duration-200">
+    <div className="card card-compact xl:w-full md:w-80 h-full border border-accent p-5 rounded-lg gap-y-5 flex flex-col relative group duration-200">
       <div className="relative">
         <Image
           src={process.env.STRAPI_BASE_URL + thumbnail}

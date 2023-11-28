@@ -17,7 +17,7 @@ import {faFilter, faGripHorizontal, faBarsStaggered, faCode, faLaptopCode} from 
 import useFetcher from "@/lib/useFetcher";
 import BacOutlineAccent from "@/components/BacOutlineAccent";
 
-export default function MainContent({filteredOnPage = ""}) {
+export default function MainContent() {
   const [gridMode, setGridMode] = useState(false);
   const [filter, setFilter] = useState("All");
   const toggleGridMode = () => {
@@ -28,15 +28,6 @@ export default function MainContent({filteredOnPage = ""}) {
     endpoint: "/api/projects?populate=*",
   });
 
-  const filtered = () => {
-    if (window.location.pathname.includes("/fullstack-web-development")) {
-      return filteredOnPage;
-    } else if (window.location.pathname.includes("/ui-ux-design")) {
-      return filteredOnPage;
-    } else {
-      return filter;
-    }
-  };
   return (
     <>
       <div className="w-full flex flex-row justify-between flex-nowrap">
@@ -55,13 +46,13 @@ export default function MainContent({filteredOnPage = ""}) {
 
       <div
         className={`w-full ${
-          gridMode == true ? "flex flex-col sm:grid sm:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-y-10"
-        }  xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
+          gridMode == true ? "flex flex-col sm:flex-row sm:flex-wrap xl:grid sm:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-y-10"
+        } items-center sm:justify-center xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
       >
         <IsDataFetched data={data} isError={isError} isLoading={isLoading} />
-        {data.length > 0 && <MappedProject data={data} isInGridMode={gridMode} filter={filter} limited={5} />}
+        {data?.length > 0 && <MappedProject data={data} isInGridMode={gridMode} filter={filter} limited={6} />}
 
-        {data.length > 0 && (
+        {data?.length > 0 && (
           <div className="text-center col-span-3">
             <BacOutlineAccent content={"View More Projects"} className={"mt-8"} icon={faMedapps} faClassName={"w-4"} href={"/projects"} />
           </div>
