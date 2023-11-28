@@ -46,8 +46,8 @@ export default function MainContent() {
 
       <div
         className={`w-full ${
-          gridMode == true ? "flex flex-col sm:flex-row sm:flex-wrap xl:grid sm:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-y-10"
-        } items-center sm:justify-center xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
+          gridMode == true ? "flex flex-col items-center sm:justify-center sm:flex-row sm:flex-wrap xl:grid sm:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-y-10"
+        } xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
       >
         <IsDataFetched data={data} isError={isError} isLoading={isLoading} />
         {data?.length > 0 && <MappedProject data={data} isInGridMode={gridMode} filter={filter} limited={6} />}
