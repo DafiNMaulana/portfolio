@@ -11,7 +11,7 @@ export default function BoutlineAccent({
   return (
     <button
       onClick={onClick}
-      className={`btn btn-outline sm:text-lg text-sm tracking-normal capitalize hover:bg-accent text-accent ${className}`}
+      className={`btn btn-outline sm:text-lg text-sm tracking-normal capitalize hover:bg-accent hover:text-base-100 text-accent ${className}`}
     >
       {content && content}
       {icon && <FontAwesomeIcon icon={icon} className={faClassName} />}
