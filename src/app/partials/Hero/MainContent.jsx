@@ -104,10 +104,10 @@ export default function MainContent() {
           <Image
             src={profilePicture == "" ? user : profilePicture}
             loader={() => `${profilePicture}?w=500`}
-            alt="You"
+            alt="Profile picture"
             width={110}
             height={110}
-            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 w-20 md:w-24"
+            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 w-[85px] md:w-24"
             placeholder="blur"
             blurDataURL={`${user}?w=500`}
           />
