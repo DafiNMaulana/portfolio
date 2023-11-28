@@ -20,12 +20,12 @@ export default function ProjectCard({thumbnail, title, desc, href, openSource}) 
   };
   return (
     <div className="card card-compact xl:w-full md:w-80 h-full border border-accent p-5 rounded-lg gap-y-5 flex flex-col relative group duration-200">
-      <div className="relative">
+      <div className="relative border border-accent rounded-lg overflow-hidden">
         <Image
           src={process.env.STRAPI_BASE_URL + thumbnail}
           loader={() => `${process.env.STRAPI_BASE_URL}${thumbnail}?w=500`}
           alt={title}
-          className="h-52 object-cover mx-auto border border-accent rounded-lg"
+          className="h-52 object-cover mx-auto"
           width={500}
           height={208}
         />
@@ -33,7 +33,7 @@ export default function ProjectCard({thumbnail, title, desc, href, openSource}) 
           <Link
             href={openSource}
             target="_blank"
-            className="bg-base-100 absolute top-0 left-0 pl-2 pt-2 pr-3 pb-3 border-l border-accent border-t rounded-tl-md rounded-br-[3rem]"
+            className="bg-base-100 absolute top-0 left-0 pl-2 pt-2 pr-3 pb-3  rounded-br-[3rem]"
           >
             <FontAwesomeIcon icon={faGithub} className="text-lg text-accent" />
           </Link>
