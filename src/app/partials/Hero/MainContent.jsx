@@ -98,7 +98,7 @@ export default function MainContent() {
       </div>
       {/* beeg title end */}
 
-      <div ref={mainWraper} className="flex flex-col items-center justify-center text-center gap-y-5 h-full">
+      <div ref={mainWraper} className="flex flex-col items-center justify-center text-center gap-y-3 md:gap-y-5 h-full">
         {/* profile picture */}
         <div className="overflow-hidden">
           <Image
@@ -107,7 +107,7 @@ export default function MainContent() {
             alt="You"
             width={110}
             height={110}
-            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 "
+            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 w-20 md:w-24"
             placeholder="blur"
             blurDataURL={`${user}?w=500`}
           />
