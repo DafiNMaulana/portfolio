@@ -22,7 +22,7 @@ export default function MappedProject({data, isInGridMode, filter, limited}) {
       ) : (
         <ProjectCard
           key={project.id}
-          thumbnail={project.attributes.thumbnail.data.attributes.url}
+          thumbnail={project?.attributes?.thumbnail?.data?.attributes.url}
           title={project.attributes.title}
           desc={project.attributes.description}
           href={project.attributes.production_url}
