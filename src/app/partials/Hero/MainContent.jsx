@@ -78,7 +78,7 @@ export default function MainContent() {
       tl2.revert();
     };
   }, [top, bot]);
-  
+
   // fetch data
   const {data, isError, isLoading} = useFetcher({endpoint: "/api/hero-section?populate=profile_picture"});
   const [profilePicture, setProfilePicture] = useState("");
@@ -88,6 +88,9 @@ export default function MainContent() {
       setProfilePicture(process.env.STRAPI_BASE_URL + data?.attributes?.profile_picture?.data?.attributes?.url);
     }
   }, [data]);
+
+  // open image
+  const [isImageOpen, setIsImageOpen] = useState(false);
   return (
     <>
       {/* beeg title */}
@@ -100,16 +103,30 @@ export default function MainContent() {
 
       <div ref={mainWraper} className="flex flex-col items-center justify-center text-center gap-y-3 md:gap-y-5 h-full">
         {/* profile picture */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden cursor-pointer" onClick={() => setIsImageOpen(true)}>
           <Image
             src={profilePicture == "" ? user : profilePicture}
-            loader={() => `${profilePicture}?w=500`}
+            loader={() => `${profilePicture}?w=110?h=110`}
             alt="Profile picture"
             width={110}
             height={110}
-            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 w-[85px] md:w-24"
-            placeholder="blur"
-            blurDataURL={`${user}?w=500`}
+            className="relative z-20 rounded-full img translate-y-[100%] invisible opacity-0 object-cover"
+          />
+        </div>
+
+        <div
+          className={`${
+            isImageOpen ? "visible" : "invisible"
+          } backdrop-blur-sm bg-base-100/30 fixed top-0 bottom-0 left-0 right-0 z-[9999] grid place-items-center p-10 cursor-pointer duration-100`}
+          onClick={() => setIsImageOpen(false)}
+        >
+          <Image
+            src={profilePicture == "" ? user : profilePicture}
+            loader={() => `${profilePicture}?w=110?h=110`}
+            alt="Profile picture"
+            width={310}
+            height={310}
+            className={`${isImageOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-24"} rounded-full duration-300`}
           />
         </div>
         {/* profile picture end */}
