@@ -46,18 +46,19 @@ export default function MainContent() {
 
       <div
         className={`w-full ${
-          gridMode == true ? "flex flex-col items-center sm:justify-center sm:flex-row sm:flex-wrap xl:grid sm:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-y-10"
+          gridMode == true
+            ? "flex flex-col items-center sm:justify-center sm:flex-row sm:flex-wrap xl:grid sm:grid-cols-2 xl:grid-cols-3"
+            : "flex flex-col gap-y-10"
         } xl:gap-[73px] gap-[20px] lg:gap-[50px] mt-[73px]`}
       >
         <IsDataFetched data={data} isError={isError} isLoading={isLoading} />
         {data?.length > 0 && <MappedProject data={data} isInGridMode={gridMode} filter={filter} limited={6} />}
-
-        {data?.length > 0 && (
-          <div className="text-center col-span-3">
-            <BacOutlineAccent content={"View More Projects"} className={"mt-8"} icon={faMedapps} faClassName={"w-4"} href={"/projects"} />
-          </div>
-        )}
       </div>
+      {data?.length > 0 && (
+        <div className="w-full mt-10 text-center col-span-3">
+          <BacOutlineAccent content={"View More Projects"} className={"mt-8"} icon={faMedapps} faClassName={"w-4"} href={"/projects"} />
+        </div>
+      )}
     </>
   );
 }
